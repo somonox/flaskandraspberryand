@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for, redirect
 import pymysql
 
 app = Flask(__name__)
@@ -17,6 +17,5 @@ def up():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5050)
-
     cur.close()
     conn.close()
