@@ -1,14 +1,22 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import pymysql
 
 app = Flask(__name__)
+conn = pymysql.connect(host='localhost', user='root', password='monun', db='study')
+cur = conn.cursor()
 
 @app.route("/")
 def home():
     return render_template("index.html")
-@app.route("/<num>")
-def up(num):
-    print(num)
-    return render_template("index.html")
+@app.post("/save")
+def up():
+    num = request.get_json("num")
+    cur.execute(f"insert into numcount(num) values({num["num"]});")
+    conn.commit()
+    return str(num["num"])
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5050)
+
+    cur.close()
+    conn.close()

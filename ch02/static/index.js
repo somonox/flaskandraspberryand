@@ -8,8 +8,14 @@ cbutton.addEventListener("click", () => {
     counter.innerText = ddong;
 })
 
-sbutton.addEventListener("click", function() {
-    location.href='http://0.0.0.0:5050/'+ ddong;
-    counter.innerText= 0;
-    ddong = 0;
+sbutton.addEventListener("click", async function() {
+    await fetch("http://0.0.0.0:5050/save", {
+      method: "POST",
+      body: JSON.stringify({
+        num: ddong,
+      }),
+    }).finally(response => {
+        counter.innerText= 0;
+        ddong = 0;
+    })
 })
