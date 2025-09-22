@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect
 import pymysql
 
 app = Flask(__name__)
-conn = pymysql.connect(host='localhost', user='root', password='monun', db='study')
+conn = pymysql.connect(host='localhost', user='root', password='q1w2e3', db='study_1')
 cur = conn.cursor()
 
 @app.route("/")
