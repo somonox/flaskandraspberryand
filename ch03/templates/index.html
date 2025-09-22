@@ -1,4 +1,25 @@
 <h1>Control your LED</h1>
 <p>yay</p>
-<button onclick="fetch('/led/on')">Turn On</button>
-<button onclick="fetch('/led/off')">Turn Off</button>
+<image id="img" src="off_bulb.png" width="100" height=auto></image>
+<div>
+    <button onclick="fetch('/led/on')" id="ON">Turn On</button>
+    <button onclick="fetch('/led/off')" id="OFF">Turn Off</button>
+</div>
+<script>
+    const ON = document.getElementById("ON");
+    const OFF = document.getElementById("OFF");
+    const img = document.getElementById("img");
+
+    ON.addEventListener("click",()=>{TURN("on");});
+    OFF.addEventListener("click",()=>{TURN("off");});
+    function TURN(mode){
+        if (mode==="on"){
+            fetch('/led/on');
+            img.src="on_bulb.png"
+        }
+        else{
+            fetch('/led/off');
+            img.src="off_bulb.png"
+        }
+    }
+</script>
